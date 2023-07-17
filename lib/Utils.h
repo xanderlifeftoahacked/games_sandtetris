@@ -1,7 +1,6 @@
 #pragma once
 #include "Constants.h"
 #include <SFML/Graphics/Color.hpp>
-#include <cstddef>
 #include <iterator>
 #include <random>
 #include <string>
