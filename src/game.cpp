@@ -1,8 +1,4 @@
-#include "Constants.h"
-#include "Rectangle.h"
-#include "Utils.h"
-#include <Game.h>
-#include <iostream>
+#include "Game.h"
 
 int main() {
   Game game;
