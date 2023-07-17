@@ -1,0 +1,3 @@
+/home/xander/Code/Cpp/UnknownProject/cmake_build_Debug/CMakeFiles/game.dir
+/home/xander/Code/Cpp/UnknownProject/cmake_build_Debug/CMakeFiles/edit_cache.dir
+/home/xander/Code/Cpp/UnknownProject/cmake_build_Debug/CMakeFiles/rebuild_cache.dir
