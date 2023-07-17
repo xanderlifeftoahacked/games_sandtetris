@@ -32,6 +32,9 @@ inline sf::Color get_sfcolor(Colors color) {
   case Colors::Empty:
     return sf::Color::Black;
     break;
+  default:
+    return sf::Color::Black;
+    break;
   }
 }
 

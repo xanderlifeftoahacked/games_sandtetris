@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/home/xander/Code/Cpp/UnknownProject/cmake_build_Debug",
-  "command": "/usr/bin/c++ -DIMGUI_USER_CONFIG=\\\"imconfig-SFML.h\\\" -DPROJECT_SOURCE_DIR=\\\"/home/xander/Code/Cpp/UnknownProject\\\" -DRESOURCE_PATH=\\\"/home/xander/Code/Cpp/UnknownProject/resources/\\\" -I/home/xander/Code/Cpp/UnknownProject/cmake_build_Debug -I/home/xander/Code/Cpp/UnknownProject/lib -g -std=gnu++20 -o CMakeFiles/game.dir/src/game.cpp.o -c /home/xander/Code/Cpp/UnknownProject/src/game.cpp",
-  "file": "/home/xander/Code/Cpp/UnknownProject/src/game.cpp",
-  "output": "CMakeFiles/game.dir/src/game.cpp.o"
-}
-]

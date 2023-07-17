@@ -14,9 +14,10 @@ public:
       : color{_color}, window{_window}, x_pos{_x_pos}, y_pos{_y_pos} {
 
     int tetramino_number = get_random(0, number_of_tetraminos - 1);
-    tetr_rotations =
-        std::vector<TetraminoArr>(tetraminos.begin() + tetramino_number * 4,
-                                  tetraminos.begin() + tetramino_number * 5);
+    tetr_rotations = std::vector<TetraminoArr>(
+        tetraminos.begin() + tetramino_number * number_of_rotations,
+        tetraminos.begin() + tetramino_number * number_of_rotations +
+            number_of_rotations);
     cur_tetr = tetr_rotations[cur_rot];
     for (int y = 0; y < cur_tetr.size(); y++) {
       for (int x = 0; x < cur_tetr.size(); x++) {
