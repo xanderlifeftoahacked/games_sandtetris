@@ -11,7 +11,6 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Window.hpp>
-#include <iostream>
 #include <vector>
 
 class Rectangle {
@@ -45,6 +44,37 @@ public:
     }
   }
 
+  void check_collision() {
+    if (y_pos >= window->getSize().y - size && !is_idle) {
+      is_idle = true;
+      for (int i = y_pos; i < y_pos + size; i++) {
+        for (int j = x_pos; j < x_pos + size; j++) {
+          grid[i][j] = get_color(color);
+        }
+      }
+    }
+  }
+  // TODO
+  void fall() {
+    return;
+    check_collision();
+    if (!is_idle) {
+      rectangle.setPosition(x_pos, y_pos += gravity / 2);
+
+      // for (int i = x_pos; i < x_pos + size; i++) {
+      //   if (grid[y_pos + size][i] != Colors::Empty) {
+      //     is_idle = true;
+      //     for (int i = y_pos; i < y_pos + size; i++) {
+      //       for (int j = x_pos; j < x_pos + size; j++) {
+      //         grid[i][j] = get_color(color);
+      //       }
+      //     }
+      //     break;
+      //   }
+      // }
+    }
+  }
+
   void move(const float moving_speed, sf::Time dt, Pressed buttons) {
     for (int i = x_pos; i < x_pos + size; i++) {
       if (grid[y_pos + size][i] != Colors::Empty) {
@@ -69,14 +99,7 @@ public:
       }
     }
 
-    if (y_pos >= window->getSize().y - size && !is_idle) {
-      is_idle = true;
-      for (int i = y_pos; i < y_pos + size; i++) {
-        for (int j = x_pos; j < x_pos + size; j++) {
-          grid[i][j] = get_color(color);
-        }
-      }
-    }
+    check_collision();
   };
 
   const void show() { window->draw(rectangle); }

@@ -1,9 +1,9 @@
+#pragma once
 #include "PressedButtons.h"
 #include "Rectangle.h"
 #include "Tetramino.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
-#include <iostream>
 
 class Game {
 public:
@@ -15,7 +15,6 @@ public:
   }
 
   void get_event() {
-    std::cout << "GETTING EVENT" << '\n';
     buttons.left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
     buttons.right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
     buttons.down = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
@@ -47,6 +46,8 @@ public:
     }
   }
 
+  void checkline();
+
   void showsand() {
     sf::VertexArray vertices;
     for (int i = 0; i < window_height; i++) {
@@ -72,6 +73,7 @@ public:
         get_event();
         tetr->move(moving_speed, dt, buttons);
       }
+      // tetr->fall();
       if (tetr->get_is_idle()) {
         delete tetr;
         tetr = new Tetramino(random_element(colors), &window, 200, 200);

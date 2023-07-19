@@ -1,3 +1,4 @@
+#pragma once
 #include "Constants.h"
 #include "PressedButtons.h"
 #include "Rectangle.h"
@@ -38,6 +39,12 @@ public:
     }
   }
 
+  void fall() {
+    y_pos += gravity / 2;
+    std::for_each(rectangles.begin(), rectangles.end(),
+                  [](Rectangle *obj) { obj->fall(); });
+  }
+
   void move(const float moving_speed, sf::Time dt, Pressed buttons) {
     if (buttons.left && x_pos > 0) {
       x_pos -= (moving_speed * 1);
@@ -51,13 +58,6 @@ public:
       for (auto rect : rectangles) {
         if (!rect->get_is_idle())
           rect->move(moving_speed, dt, buttons);
-        for (auto rect : rectangles) {
-          if (rect->get_is_idle()) {
-            std::for_each(rectangles.begin(), rectangles.end(),
-                          [](Rectangle *rect) { rect->kill(); });
-            std::cout << "IDLE" << '\n';
-          }
-        }
       }
       return;
     }
@@ -93,8 +93,6 @@ public:
       if (rect->get_is_idle()) {
         std::for_each(rectangles.begin(), rectangles.end(),
                       [](Rectangle *rect) { rect->kill(); });
-        std::cout << "IDLE" << '\n';
-
         return true;
       }
     }
