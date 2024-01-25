@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(SFML COMPONENTS system window graphics audio)
 find_package(ImGui-SFML)
+find_package(imgui CONFIG REQUIRED)
+
 # find_package(imgui CONFIG REQUIRED)
 
 add_executable(game src/game.cpp)

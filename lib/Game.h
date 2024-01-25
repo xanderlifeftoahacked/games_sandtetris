@@ -1,4 +1,5 @@
 #pragma once
+#include "Constants.h"
 #include "PressedButtons.h"
 #include "Rectangle.h"
 #include "Tetramino.h"
@@ -22,28 +23,22 @@ public:
   }
 
   void updategrid() {
-    for (int i = 0; i < window_height - 1; i++) {
-      for (int j = 0; j < window_width; j++) {
-        if (grid[i + 1][j] == Colors::Empty) {
-          std::swap(grid[i][j], grid[i + 1][j]);
-        } else if (j > 0 && j < window_width - 1 &&
-                   (grid[i + 1][j + 1] == Colors::Empty ||
-                    grid[i + 1][j - 1] == Colors::Empty)) {
-          int random = get_random(0, 1);
-          if (random == 0 && j > 0 && grid[i + 1][j - 1] == Colors::Empty) {
-            std::swap(grid[i][j], grid[i + 1][j - 1]);
-          } else if (random == 1 && j < window_width - 1 &&
-                     grid[i + 1][j + 1] == Colors::Empty) {
-            std::swap(grid[i][j], grid[i + 1][j + 1]);
-          }
-        } else if (j < window_width - 1 &&
-                   grid[i + 1][j + 1] == Colors::Empty) {
-          std::swap(grid[i][j], grid[i + 1][j + 1]);
-        } else if (j > 0 && grid[i + 1][j - 1] == Colors::Empty) {
-          std::swap(grid[i][j], grid[i + 1][j - 1]);
+    std::vector<std::vector<Colors>> temp = grid;
+    for (int i = window_height - 2; i > 0; --i) {
+      for (int j = window_width - 2; j > 0; --j) {
+        if (grid[i][j] != Colors::Empty)
+          continue;
+
+        if (grid[i - 1][j] != Colors::Empty) {
+          std::swap(temp[i][j], temp[i - 1][j]);
+        } else if (grid[i - 1][j + 1] != Colors::Empty) {
+          std::swap(temp[i][j], temp[i - 1][j + 1]);
+        } else if (grid[i - 1][j - 1] != Colors::Empty) {
+          std::swap(temp[i][j], temp[i - 1][j - 1]);
         }
       }
     }
+    grid = temp;
   }
 
   void checkline();
